@@ -31,7 +31,6 @@
         <div class="url" id="subUrl">https://ptonzo.github.io/nordlynx-free-test/sub.txt</div>
         <div class="actions">
           <button class="btn primary" id="copyBtn" type="button">Скопировать ссылку</button>
-          <a class="btn" id="happBtn" href="happ://add/https://ptonzo.github.io/nordlynx-free-test/sub.txt">Открыть в Happ</a>
           <a class="btn ghost" href="./sub.txt" target="_blank" rel="noopener">Открыть подписку</a>
         </div>
         <div class="status"><span class="dot"></span><span id="statusText">Тестовая подписка · проверьте доступность узлов в Happ</span></div>
@@ -59,7 +58,6 @@
     (function(){
       const url = new URL("sub.txt", window.location.href).href;
       document.getElementById("subUrl").textContent = url;
-      document.getElementById("happBtn").href = "happ://add/" + url;
       const qr = document.getElementById("qrcode");
       if (window.QRCode) new QRCode(qr,{text:url,width:174,height:174,colorDark:"#07111f",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
       else qr.textContent = "QR временно недоступен — скопируйте ссылку";
