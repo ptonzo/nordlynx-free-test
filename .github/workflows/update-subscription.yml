@@ -54,6 +54,14 @@ jobs:
           MAX_PER_COUNTRY: '3'
           PROBE_TIMEOUT: '12'
 
+      - name: Upload diagnostic status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nordlynx-monitor-status
+          path: output/status.json
+          if-no-files-found: ignore
+
       - name: Prepare Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
