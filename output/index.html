@@ -1,1 +1,78 @@
-<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NORDLYNX VPN — тест</title><body style="font:16px system-ui;max-width:760px;margin:40px auto;padding:0 18px"><h1>NORDLYNX VPN — бесплатный тест</h1><p>Это агрегатор публичных узлов третьих лиц, а не собственная VPN-сеть.</p><p><a href="sub.txt">Открыть подписку Happ</a></p><p><a href="status.json">Статус последней сборки</a></p><p>Публичные узлы могут видеть метаданные соединений и внезапно отключаться. Не используйте их для банков, почты, рабочих учётных записей и другой чувствительной активности.</p></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>NORDLYNX VPN — подключение</title>
+  <style>
+    :root{color-scheme:dark;--bg:#080e19;--panel:#111b2b;--line:#24344b;--muted:#9aabc1;--text:#f3f7fc;--accent:#72a7ff;--good:#4bd3a1}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#1b3b68 0%,transparent 65%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    .wrap{max-width:920px;margin:0 auto;padding:28px 18px 64px}.top{display:flex;align-items:center;gap:12px;margin:8px 0 38px}.mark{width:42px;height:42px;border:1px solid #38577e;border-radius:13px;display:grid;place-items:center;background:#132744;color:#9dc2ff;font-weight:800;letter-spacing:-2px}.brand{font-weight:800;letter-spacing:.12em}.subbrand{color:var(--muted);font-size:12px;letter-spacing:.16em}
+    .hero{max-width:700px;margin-bottom:26px}.eyebrow{color:var(--good);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.04em;margin:12px 0}p{color:var(--muted);margin:8px 0}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}.card{background:linear-gradient(160deg,#142238,#0e1725);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 16px 50px #0003}.card h2{font-size:18px;margin:0 0 12px}.url{overflow-wrap:anywhere;background:#091321;border:1px solid #2a3d57;border-radius:12px;padding:13px;color:#d7e7ff;font:13px/1.5 ui-monospace,monospace}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.btn{appearance:none;border:1px solid #3c5b82;background:#1a3558;color:white;padding:11px 15px;border-radius:11px;font-weight:700;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-height:44px}.btn.primary{background:#3678d8;border-color:#3678d8}.btn.ghost{background:#101c2c}.btn:hover{filter:brightness(1.12)}.hint{font-size:13px;margin-top:12px}.qrbox{background:#fff;border-radius:14px;width:190px;height:190px;margin:8px auto 12px;display:grid;place-items:center;padding:8px}.qrbox img{max-width:100%}.qrlabel{text-align:center;font-size:13px;color:var(--muted)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.step{border:1px solid var(--line);border-radius:14px;padding:15px;background:#0d1725}.num{color:var(--accent);font-size:12px;font-weight:800}.step strong{display:block;margin:4px 0}.step p{font-size:13px;margin:0}
+    .status{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:13px;margin-top:14px}.dot{width:8px;height:8px;border-radius:50%;background:#e0ad4b}.warning{border-left:3px solid #e0ad4b;padding:10px 13px;background:#201c15;border-radius:0 10px 10px 0;color:#ddcfb2;font-size:13px;margin-top:18px}
+    footer{margin-top:26px;color:#778ba5;font-size:12px}a{color:#9dc2ff}
+    @media(max-width:720px){.layout{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.card{padding:18px}.top{margin-bottom:28px}.qrbox{width:180px;height:180px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top"><div class="mark">N</div><div><div class="brand">NORDLYNX</div><div class="subbrand">PRIVATE CONNECTION · TEST</div></div></header>
+    <section class="hero">
+      <div class="eyebrow">Личный кабинет подключения</div>
+      <h1>Подключите NORDLYNX<br>в приложении Happ</h1>
+      <p>Одна ссылка для ваших устройств. Добавьте её в Happ вручную, по QR-коду или попробуйте открыть приложение напрямую.</p>
+    </section>
+    <section class="layout">
+      <article class="card">
+        <h2>Ваша ссылка-подписка</h2>
+        <div class="url" id="subUrl">https://ptonzo.github.io/nordlynx-free-test/sub.txt</div>
+        <div class="actions">
+          <button class="btn primary" id="copyBtn" type="button">Скопировать ссылку</button>
+          <a class="btn" id="happBtn" href="happ://add/https://ptonzo.github.io/nordlynx-free-test/sub.txt">Открыть в Happ</a>
+          <a class="btn ghost" href="./sub.txt" target="_blank" rel="noopener">Открыть подписку</a>
+        </div>
+        <div class="status"><span class="dot"></span><span id="statusText">Тестовая подписка · проверьте доступность узлов в Happ</span></div>
+        <div class="warning">Это тестовый агрегатор публичных конфигураций третьих лиц. Мы не владеем этими серверами и не проверяем безопасность их операторов. Наличие узла в списке не гарантирует подключение. Не используйте неизвестные узлы для банковских, рабочих и иных конфиденциальных действий.</div>
+      </article>
+      <aside class="card">
+        <h2>Подключение по QR-коду</h2>
+        <div class="qrbox"><div id="qrcode" aria-label="QR-код ссылки подписки"></div></div>
+        <div class="qrlabel">Откройте Happ на телефоне → «+» → QR-код</div>
+        <div class="actions" style="justify-content:center"><button class="btn ghost" id="refreshBtn" type="button">Обновить страницу</button></div>
+      </aside>
+    </section>
+    <section class="steps">
+      <div class="step"><span class="num">ШАГ 01</span><strong>Установите Happ</strong><p>Установите приложение на Windows, Android или iPhone.</p></div>
+      <div class="step"><span class="num">ШАГ 02</span><strong>Добавьте подписку</strong><p>Скопируйте ссылку, нажмите «+» в Happ и импортируйте её. Или отсканируйте QR-код.</p></div>
+      <div class="step"><span class="num">ШАГ 03</span><strong>Проверьте соединение</strong><p>Выберите узел и выполните тест. Если соединение не работает, попробуйте другой узел.</p></div>
+    </section>
+    <footer>
+      NORDLYNX VPN · бесплатный личный тест. <a href="./status.json">Статус последней сборки</a> · <a href="https://happ.how/ru/setup/add-subscription" target="_blank" rel="noopener">Инструкция Happ</a>.
+      <br>На этом этапе страница управляет способом подключения и обновления ссылки, но не создаёт личные аккаунты, не продлевает доступ и не отзывает серверные ключи.
+    </footer>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7z8G4b4b5x5eZ3+0Q2w5m5J3V8h3K7hQ3kQ6Y6z0n3X3M3G8g0Y6fQ0V6f0M0X0Y0Z0a0b0c0d0e0f0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function(){
+      const url = new URL("sub.txt", window.location.href).href;
+      document.getElementById("subUrl").textContent = url;
+      document.getElementById("happBtn").href = "happ://add/" + url;
+      const qr = document.getElementById("qrcode");
+      if (window.QRCode) new QRCode(qr,{text:url,width:174,height:174,colorDark:"#07111f",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
+      else qr.textContent = "QR временно недоступен — скопируйте ссылку";
+      document.getElementById("copyBtn").addEventListener("click",async function(){
+        try{await navigator.clipboard.writeText(url);this.textContent="Ссылка скопирована";}catch(e){this.textContent="Выделите ссылку и скопируйте";const range=document.createRange();range.selectNodeContents(document.getElementById("subUrl"));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);}
+      });
+      document.getElementById("refreshBtn").addEventListener("click",()=>window.location.reload());
+      fetch("./status.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(s=>{
+        if(!s)return;
+        const count=Number(s.selected_nodes||0), countries=Array.isArray(s.countries)?s.countries.length:0;
+        document.getElementById("statusText").textContent="Последняя сборка: "+(s.generated_utc||"неизвестно")+" · узлов в публикации: "+count+" · меток стран: "+countries;
+      }).catch(()=>{});
+    })();
+  </script>
+</body>
+</html>
