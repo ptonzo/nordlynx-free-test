@@ -53,14 +53,18 @@
       <br>На этом этапе страница управляет способом подключения и обновления ссылки, но не создаёт личные аккаунты, не продлевает доступ и не отзывает серверные ключи.
     </footer>
   </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7z8G4b4b5x5eZ3+0Q2w5m5J3V8h3K7hQ3kQ6Y6z0n3X3M3G8g0Y6fQ0V6f0M0X0Y0Z0a0b0c0d0e0f0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     (function(){
       const url = new URL("sub.txt", window.location.href).href;
       document.getElementById("subUrl").textContent = url;
       const qr = document.getElementById("qrcode");
-      if (window.QRCode) new QRCode(qr,{text:url,width:174,height:174,colorDark:"#07111f",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
-      else qr.textContent = "QR временно недоступен — скопируйте ссылку";
+      const qrImage = document.createElement("img");
+      qrImage.alt = "QR-код ссылки NORDLYNX";
+      qrImage.width = 174; qrImage.height = 174;
+      qrImage.referrerPolicy = "no-referrer";
+      qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=174x174&format=png&data=" + encodeURIComponent(url);
+      qrImage.onerror = function(){ qr.textContent = "QR-сервис недоступен — скопируйте ссылку вручную"; };
+      qr.appendChild(qrImage);
       document.getElementById("copyBtn").addEventListener("click",async function(){
         try{await navigator.clipboard.writeText(url);this.textContent="Ссылка скопирована";}catch(e){this.textContent="Выделите ссылку и скопируйте";const range=document.createRange();range.selectNodeContents(document.getElementById("subUrl"));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);}
       });
