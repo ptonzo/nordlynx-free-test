@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+
       - name: Install sing-box
         run: |
           curl -fsSL https://sing-box.app/install.sh | sudo sh
