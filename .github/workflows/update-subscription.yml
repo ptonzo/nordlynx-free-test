@@ -1,6 +1,13 @@
 name: Update NORDLYNX public test subscription
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/update-subscription.yml'
+      - 'README_RU.md'
   workflow_dispatch:
   schedule:
     - cron: '17 * * * *'
