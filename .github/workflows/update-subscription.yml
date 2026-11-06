@@ -20,6 +20,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -30,12 +31,18 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build subscription
+      - name: Install sing-box
+        run: |
+          curl -fsSL https://sing-box.app/install.sh | sudo sh
+          sing-box version
+
+      - name: Build and end-to-end test subscription
         run: python src/build_subscription.py
         env:
           MIN_NODES: '20'
-          MIN_COUNTRIES: '5'
-          TCP_TIMEOUT: '3'
+          MIN_COUNTRIES: '20'
+          MAX_PER_COUNTRY: '3'
+          PROBE_TIMEOUT: '12'
 
       - name: Prepare Pages artifact
         uses: actions/upload-pages-artifact@v3
